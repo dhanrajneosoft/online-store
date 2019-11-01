@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -7,12 +9,23 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    constructor(private router: Router) {}
+    form: any;
+    constructor(private router: Router , private fb : FormBuilder, private apiAuth : AuthService) {}
 
-    ngOnInit() {}
-
-    onLogin() {
-        localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
+    ngOnInit() {
+        this.form = this.fb.group({
+            'username': ['8898955327', Validators.required],
+            'password': ['12345', Validators.required],
+        })
+    }
+    login() {
+        console.log(this.form.value);
+        this.apiAuth.login(this.form.value).subscribe((res)=>{
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            this.router.navigate(['dashboard']);
+        }, (err)=>{
+            console.log(err);
+        })
     }
 }
