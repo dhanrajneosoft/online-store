@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-products-dialog',
@@ -10,36 +10,89 @@ import { MatSnackBar, MatDialogRef } from '@angular/material';
 })
 export class AddProductsDialogComponent implements OnInit {
   productForm: FormGroup;
+  formData: any;
+  categories: any;
   constructor(private fb: FormBuilder,
     private apiAdmin: AdminService,
     private snackbar: MatSnackBar,
-    private dialogRef: MatDialogRef<AddProductsDialogComponent>) { }
+    private dialogRef: MatDialogRef<AddProductsDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
   ngOnInit() {
+    if (this.data.requestType == 'add') {
+      this.formData = new productModel({});
+    } else {
+      this.formData = new productModel(this.data.product);
+    }
+    this.getCategories();
     this.productForm = this.fb.group({
-      "category": [],
-      "name": [],
-      "price": [],
-      "mrp": [],
-      "selling_price": [],
-      "description": [],
-      "quantity": [],
-      "barcode": []
+      "category": [this.formData.category],
+      "name": [this.formData.name],
+      "price": [this.formData.price],
+      "mrp": [this.formData.mrp],
+      "selling_price": [this.formData.selling_price],
+      "description": [this.formData.description],
+      "quantity": [this.formData.quantity],
+      "barcode": [this.formData.barcode]
     })
   }
   submit() {
     console.log(this.productForm.value);
-    this.apiAdmin.addProduct(this.productForm.value).subscribe((res) => {
+    if (this.data.requestType == 'add') {
+      this.apiAdmin.addProduct(this.productForm.value).subscribe((res) => {
+        console.log(res);
+        this.productForm.reset();
+        this.dialogRef.close();
+        this.snackbar.open("product has been added", "Added", {
+          duration: 2000
+        })
+      }, (error) => {
+        this.snackbar.open(error.error.message, "Failed to Add", {
+          duration: 3000
+        })
+        console.log(error);
+      })
+    } else if (this.data.requestType == 'edit') {
+      this.apiAdmin.updateProduct(this.data.product._id, this.productForm.value).subscribe((res) => {
+        console.log(res);
+        this.productForm.reset();
+        this.dialogRef.close();
+        this.snackbar.open("product has been updated", "Updated", {
+          duration: 2000
+        })
+      }, (error) => {
+        this.snackbar.open(error.error.message, "Failed to update", {
+          duration: 3000
+        })
+        console.log(error);
+      })
+    }
+  }
+  getCategories() {
+    this.apiAdmin.getCategories().subscribe((res) => { 
       console.log(res);
-      this.productForm.reset();
-      this.dialogRef.close();
-      this.snackbar.open("product has been added", "Added", {
-        duration: 2000
-      })
-    }, (error) => {
-      this.snackbar.open(error.error.message, "Failed to Add", {
-        duration: 3000
-      })
-      console.log(error);
+      this.categories = res;
+    }, (err) => { 
+      console.log(err)
     })
+  }
+}
+export class productModel {
+  category: String;
+  name: String;
+  price: Number;
+  mrp: Number;
+  selling_price: Number;
+  description: String;
+  quantity: Number;
+  barcode: Number
+  constructor(product) {
+    this.category = product.category;
+    this.name = product.name;
+    this.price = product.price;
+    this.mrp = product.mrp;
+    this.selling_price = product.selling_price;
+    this.description = product.description;
+    this.quantity = product.quantity;
+    this.barcode = product.barcode;
   }
 }

@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>Add Product</span>
+  <span>{{data.requestType | titlecase}} Product</span>
 </mat-toolbar>
 <form [formGroup]="productForm" (ngSubmit)="submit()">
   <div class="row">
@@ -8,8 +8,7 @@
         <mat-form-field>
           <mat-label>Product Category</mat-label>
           <mat-select formControlName="category">
-            <mat-option [value]="'food'">Food</mat-option>
-            <mat-option [value]="'electronics'">Electronics</mat-option>
+            <mat-option *ngFor="let cat of categories" [value]="cat._id">{{cat.name | titlecase}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -65,8 +64,8 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <button mat-flat-button color="primary" type="submit">Submit</button> &nbsp;
-        <button mat-flat-button color="warn" type="button">Reset</button>
+        <button mat-flat-button color="primary" type="submit">{{data.requestType == 'add' ? 'Submit' : 'Update'}}</button> &nbsp;
+        <button mat-flat-button color="warn" type="button" (click)="dialogRef.close()">Cancel</button>
       </div>
     </div>
   </div>

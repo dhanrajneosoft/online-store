@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { AdminService } from 'src/app/services/admin.service';
 import { AddProductsDialogComponent } from './add-products-dialog/add-products-dialog.component';
+import { ProductImagesComponent } from './product-images/product-images.component';
 
 @Component({
   selector: 'app-products',
@@ -20,7 +21,8 @@ export class ProductsComponent implements OnInit {
     'selling_price',
     'description',
     'quantity',
-    'action'
+    'action',
+    'status'
 ];
   // dataSource = new MatTableDataSource<ProductModel>(this.products);
 
@@ -35,9 +37,21 @@ export class ProductsComponent implements OnInit {
       this.dataSource = res.data;
     }, (err) => { })
   }
-  openAddProductDialog(): void {
+  openAddProductDialog(requestType, product?: any): void {
     const dialogRef = this.dialog.open(AddProductsDialogComponent, {
-      width: '500px'
+      width: '500px',
+      data: {requestType, product}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getProducts();
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+  }
+  openImageDialog(){
+    const dialogRef = this.dialog.open(ProductImagesComponent, {
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

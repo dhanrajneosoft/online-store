@@ -9,6 +9,7 @@ import { AddProductsDialogComponent } from './add-products-dialog/add-products-d
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from 'src/app/shared/services/interceptor.service';
+import { ProductImagesComponent } from './product-images/product-images.component';
 const routes: Routes = [
   {
       path: '',
@@ -16,7 +17,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [ProductsComponent, AddProductsDialogComponent],
+  declarations: [ProductsComponent, AddProductsDialogComponent, ProductImagesComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -35,6 +36,6 @@ const routes: Routes = [
     MatSnackBarModule
   ],
   providers: [AdminService, {provide : HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
-  entryComponents: [AddProductsDialogComponent]
+  entryComponents: [AddProductsDialogComponent, ProductImagesComponent]
 })
 export class ProductsModule { }
