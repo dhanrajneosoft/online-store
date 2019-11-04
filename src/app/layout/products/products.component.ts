@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
 import { AdminService } from 'src/app/services/admin.service';
+import { AddProductsDialogComponent } from './add-products-dialog/add-products-dialog.component';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,7 @@ import { AdminService } from 'src/app/services/admin.service';
 export class ProductsComponent implements OnInit {
   products;
   dataSource: any;
-  constructor(private apiAdmin: AdminService) {
+  constructor(private apiAdmin: AdminService, private dialog: MatDialog) {
 
   }
   displayedColumns: string[] = ['name',
@@ -33,6 +34,16 @@ export class ProductsComponent implements OnInit {
     this.apiAdmin.getProducts().subscribe((res) => {
       this.dataSource = res.data;
     }, (err) => { })
+  }
+  openAddProductDialog(): void {
+    const dialogRef = this.dialog.open(AddProductsDialogComponent, {
+      width: '500px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 }
 

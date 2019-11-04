@@ -1,6 +1,14 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Products</span>
+    <span class="example-spacer"></span>
+    <button mat-flat-button color="warn" (click)="openAddProductDialog()">
+     Add Product <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">add</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource">
-
     <!-- Position Column -->
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -38,7 +46,9 @@
     </ng-container>
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element"> <button mat-icon-button><mat-icon>pageview</mat-icon></button> </td>
+      <td mat-cell *matCellDef="let element"> <button mat-icon-button>
+          <mat-icon>pageview</mat-icon>
+        </button> </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

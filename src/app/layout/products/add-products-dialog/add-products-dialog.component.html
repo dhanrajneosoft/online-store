@@ -1,0 +1,74 @@
+<mat-toolbar>
+  <span>Add Product</span>
+</mat-toolbar>
+<form [formGroup]="productForm" (ngSubmit)="submit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Product Category</mat-label>
+          <mat-select formControlName="category">
+            <mat-option [value]="'food'">Food</mat-option>
+            <mat-option [value]="'electronics'">Electronics</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Product Name" formControlName="name">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="MRP" formControlName="mrp" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Purchased Price" formControlName="price" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Selling Price" formControlName="selling_price" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Quantity" formControlName="quantity" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <input matInput placeholder="Barcode" formControlName="barcode" type="number">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="form-group">
+        <mat-form-field class="w-100">
+          <textarea matInput placeholder="Prodcut Description" formControlName="description"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <button mat-flat-button color="primary" type="submit">Submit</button> &nbsp;
+        <button mat-flat-button color="warn" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+
+</form>

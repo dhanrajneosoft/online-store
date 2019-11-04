@@ -13,4 +13,12 @@ export class AdminService {
      const url = this.apiHelper.getSpaUrl('products');
      return this.http.get<any>(url); 
   }
+  getOrders(){
+    const url = this.apiHelper.getSpaUrl('orders');
+    return this.http.get<any>(url);
+  }
+  addProduct(data){
+    const url = this.apiHelper.getSpaUrl('products');
+    return this.http.post<any>(url, data);
+  }
 }

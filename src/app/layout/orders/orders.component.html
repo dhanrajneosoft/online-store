@@ -1,0 +1,19 @@
+<table class="table">
+   <thead>
+     <tr>
+       <th>Sr no.</th>
+       <th>Order</th>
+       <th>Products</th>
+       <th>Amount</th>
+       <th>Payment Mode</th>
+       <th>Action</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let order of orders; let i = index">
+       <td>{{i+1}}</td>
+       <td>{{order._id}}</td>
+       <td></td>
+     </tr>
+   </tbody>
+</table>
