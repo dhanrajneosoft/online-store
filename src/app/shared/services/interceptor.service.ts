@@ -11,6 +11,5 @@ export class InterceptorService implements HttpInterceptor{
     }
     return next.handle(req);
   }
-
   constructor() { }
 }

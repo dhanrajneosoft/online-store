@@ -41,6 +41,7 @@ export class ProductsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getProducts();
       console.log('The dialog was closed');
       // this.animal = result;
     });
@@ -54,5 +55,6 @@ export interface ProductModel {
   selling_price: Number,
   description: String,
   quantity: Number,
-  barcode: String
+  barcode: String,
+  status: String
 }
