@@ -3,9 +3,14 @@
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-    <div class="swiper-slide"><img src="https://media.4rgos.it/i/Argos/9164291_R_Z001A?w=750&h=440&qlt=70"></div>
-    <div class="swiper-slide"><img src="https://brain-images-ssl.cdn.dixons.com/2/4/10180942/u_10180942.jpg"></div>
-    <div class="swiper-slide"><img src="https://hniesfp.imgix.net/8/images/detailed/69/Y3V76EAABU_01.jpg"></div>
+    <div class="swiper-slide" *ngFor="let img of data.images;let i = index">
+      <img [src]="envPath+img.url">
+      <div class="strip">
+        <button mat-flat-button color="basic" (click)="deletProductImage(img._id, i)">
+           <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
     <!-- If we need pagination -->
   </div>
   <div class="swiper-pagination"></div>
@@ -14,7 +19,8 @@
 </div>
 <div class="file-upload" *ngIf="!Slider">
   <input type="file" style="display:none;" #file (change)="uploadImage($event)">
-  <button mat-flat-button color="warn" style="margin:auto;" (click)="$event.stopPropagation(); file.click()">Upload Image
+  <button mat-flat-button color="warn" style="margin:auto;" (click)="$event.stopPropagation(); file.click()">Upload
+    Image
     <mat-icon>add_photo_alternate</mat-icon></button>
 </div>
 <div class="add-image-section" style="text-align: center;" *ngIf="Slider">

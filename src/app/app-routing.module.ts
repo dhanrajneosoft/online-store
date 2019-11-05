@@ -5,12 +5,21 @@ import { AuthGuard } from './shared/guard/auth.guard';
 const routes: Routes = [
     {
         path: '',
+        redirectTo: 'customer',
+        pathMatch: 'full'
+    },
+    {
+        path: 'admin',
         loadChildren: './layout/layout.module#LayoutModule',
         canActivate: [AuthGuard]
     },
     {
         path: 'login',
         loadChildren: './login/login.module#LoginModule'
+    },
+    {
+        path: 'customer',
+        loadChildren: './customer/customer.module#CustomerModule'
     }
 ];
 
@@ -19,4 +28,4 @@ const routes: Routes = [
     exports: [RouterModule],
     providers: [AuthGuard]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiHelper } from '../helpers/api-helper';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductModel } from '../layout/products/products.component';
 
 @Injectable({
@@ -9,6 +9,10 @@ import { ProductModel } from '../layout/products/products.component';
 export class AdminService {
   constructor(private apiHelper: ApiHelper, private http: HttpClient) { }
   getProducts() {
+    const url = this.apiHelper.getSpaUrl('products');
+    return this.http.get<any>(url);
+  }
+  getProductById(product_id){
     const url = this.apiHelper.getSpaUrl('products');
     return this.http.get<any>(url);
   }
@@ -28,8 +32,19 @@ export class AdminService {
     const url = this.apiHelper.getSpaUrl('categories');
     return this.http.get<any>(url);
   }
-  uploadImage(data){
-      const url = this.apiHelper.getSpaUrl('fileupload');
+  uploadProductImage(data){
+      const url = this.apiHelper.getSpaUrl('product-image');
       return this.http.post<any>(url, data);
+  }
+  deleteProductImageById(id, data){
+    console.log(data);
+    const url = this.apiHelper.getSpaUrl('product-image/'+id);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: data
+    };
+    return this.http.delete(url, options);
   }
 }

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
         this.apiAuth.login(this.form.value).subscribe((res)=>{
             console.log(res);
             localStorage.setItem('token', res.token);
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['admin','dashboard']);
         }, (err)=>{
             console.log(err);
         })

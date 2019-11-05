@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products.component';
 import { Routes, RouterModule } from '@angular/router';
 import {MatTableModule} from '@angular/material/table';
-import { MatPaginatorModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatSnackBarModule } from '@angular/material';
+import { MatPaginatorModule, MatButtonModule, MatIconModule, MatCardModule, MatToolbarModule, MatDialogModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatSnackBarModule, MAT_DIALOG_DATA, MatBadgeModule } from '@angular/material';
 import { AdminService } from 'src/app/services/admin.service';
 import { AddProductsDialogComponent } from './add-products-dialog/add-products-dialog.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -33,7 +33,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSelectModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatBadgeModule
   ],
   providers: [AdminService, {provide : HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}],
   entryComponents: [AddProductsDialogComponent, ProductImagesComponent]

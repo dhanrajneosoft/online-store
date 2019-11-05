@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   uri : 'https://nodeproject-store.herokuapp.com/',
-  v_uri : 'https://shocking-cemetery-61119.herokuapp.com/api/v1/',
+  v_uri : 'https://nodeproject-store.herokuapp.com/api/v1/',
 };
 
 /*

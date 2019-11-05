@@ -25,7 +25,6 @@ export class ProductsComponent implements OnInit {
     'status'
 ];
   // dataSource = new MatTableDataSource<ProductModel>(this.products);
-
   // @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
@@ -49,11 +48,11 @@ export class ProductsComponent implements OnInit {
       // this.animal = result;
     });
   }
-  openImageDialog(){
+  openImageDialog(element){
     const dialogRef = this.dialog.open(ProductImagesComponent, {
       width: '500px',
+      data: element
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.getProducts();
       console.log('The dialog was closed');

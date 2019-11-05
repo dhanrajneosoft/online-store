@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      fsfd
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let product of products">
+          <mat-card class="example-card">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"></div>
+            </mat-card-header>
+            <div class="image-box">
+              <img mat-card-image [src]="envPath+product.images[0].url" [attr.alt]="product.name">
+            </div>
+            <mat-card-content>
+              <mat-card-title>{{product.name | titlecase}}</mat-card-title>
+              <p class="description">
+                {{product.description}}
+              </p>
+              <p><strong>Rs. {{product.selling_price}}</strong><del> Rs.{{product.mrp}}</del> <span class="discount">(10% OFF)</span></p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-flat-button color="primary" (click)="addToCart(product)">ADD TO CART</button>
+              <button mat-flat-button color="warn" style="float:right">BUY NOW</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
