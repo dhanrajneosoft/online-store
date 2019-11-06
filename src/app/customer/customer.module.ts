@@ -6,6 +6,7 @@ import { MatToolbarModule, MatButtonModule, MatIconModule, MatFormFieldModule, M
 import { TranslateModule } from '@ngx-translate/core';
 import { CustomerRoutingModule } from './customer-routing.module';
 import { CustomerService } from './services/customer.service';
+import { CartService } from './services/cart-service';
 // const routes = [{
 //   path :'',
 //   loadChildren : "./components/customer-home/customer-home.module#CustomerHomeModule"
@@ -24,6 +25,6 @@ import { CustomerService } from './services/customer.service';
     MatBadgeModule,
     CustomerRoutingModule
   ],
-  providers: [CustomerService]
+  providers: [CustomerService, CartService]
 })
 export class CustomerModule { }
