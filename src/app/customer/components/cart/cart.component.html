@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <mat-card *ngIf="cart">
+        <mat-card-title>My Cart({{cart.length}})</mat-card-title>
+        <div class="card-list">
+          <div class="row product-list" *ngFor="let crt of cart; let i = index">
+            <div class="col-md-3">
+              <div class="image-section">
+                <img [src]="envPath+crt.id.images[0].url">
+                <!-- <img [src]="'https://rukminim1.flixcart.com/image/224/224/jqb8ccw0/computer/7/e/a/asus-na-laptop-original-imafccy62gz8vhsq.jpeg?q=90'"> -->
+                <div class="quantity">
+                  <span>
+                    <button mat-icon-button (click)="decrement(i, crt.max_order_limit)">
+                      <mat-icon>remove_circle_outline</mat-icon>
+                    </button>
+                  </span>
+                  <span>
+                    <input type="number" min="1" [value]="crt.quantity">
+                  </span>
+                  <span>
+                    <button mat-icon-button (click)="increment(crt._id, crt.max_order_limit)">
+                      <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <span>{{crt.id.name | titlecase}}</span>
+              <p>{{crt.id.description | titlecase}}</p>
+              <p>
+                <strong>Rs. {{(crt.selling_price * crt.quantity | number : '2.2-2')}}</strong>
+                <del> Rs.{{(crt.mrp * crt.quantity) | number: '2.2-2'}}</del>
+                <span class="discount">({{getDiscount(crt.mrp, crt.selling_price) | number : '1.2-2'}}% OFF)</span>
+              </p>
+              <p>
+                <button mat-flat-button color="warn" (click)="deleteItemFromCart(crt._id)">
+                  Remove
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p style="color:grey; margin:0px;">
+                <span>Delivery by Thu Nov 14
+                </span> |
+                <span class="text-success">Free</span>
+              </p>
+              <span class="text-danger">10 Days Replacement Policy</span>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center;">
+          <button mat-flat-button color="warn" routerLink="../../checkout" style="margin-top:10px;">Place Order
+          </button>
+        </div>
+        <div style="text-align: center;">
+          <button mat-flat-button color="primary" routerLink="../../" style="margin-top:10px;">Continue Shopping
+          </button>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-md-4">
+      <mat-card>
+        <mat-card-title>PRICE DETAILS</mat-card-title>
+        <div class="price-box">
+          <div class="price-ls">
+            <span>Price ({{cart.length}} Item)</span>
+            <span>{{getTotalCartAmount(cart) | number : '2.2-2'}}</span>
+          </div>
+          <div class="price-ls">
+            <span>Delivery </span>
+            <span>Free</span>
+          </div>
+          <div class="price-ls">
+            <span>Total Amount</span>
+            <span>{{getTotalCartAmount(cart) | number : '2.2-2'}}</span>
+          </div>
+        </div>
+        <div style="text-align: center">
+          <button mat-flat-button color="warn" (click)="removeFromCart(i, crt._id)" style="margin-top:10px;">Place Order
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -21,9 +21,11 @@ export class AddProductsDialogComponent implements OnInit {
     if (this.data.requestType == 'add') {
       this.formData = new productModel({});
     } else {
+      console.log(this.data);
       this.formData = new productModel(this.data.product);
     }
     this.getCategories();
+    console.log(this.formData);
     this.productForm = this.fb.group({
       "category": [this.formData.category],
       "name": [this.formData.name],
@@ -32,7 +34,8 @@ export class AddProductsDialogComponent implements OnInit {
       "selling_price": [this.formData.selling_price],
       "description": [this.formData.description],
       "quantity": [this.formData.quantity],
-      "barcode": [this.formData.barcode]
+      "barcode": [this.formData.barcode],
+      "max_order_limit": [this.formData.max_order_limit ? this.formData.max_order_limit.toString() : '']
     })
   }
   submit() {
@@ -68,10 +71,10 @@ export class AddProductsDialogComponent implements OnInit {
     }
   }
   getCategories() {
-    this.apiAdmin.getCategories().subscribe((res) => { 
+    this.apiAdmin.getCategories().subscribe((res) => {
       console.log(res);
       this.categories = res;
-    }, (err) => { 
+    }, (err) => {
       console.log(err)
     })
   }
@@ -84,7 +87,8 @@ export class productModel {
   selling_price: Number;
   description: String;
   quantity: Number;
-  barcode: Number
+  barcode: Number;
+  max_order_limit: Number;
   constructor(product) {
     this.category = product.category;
     this.name = product.name;
@@ -94,5 +98,6 @@ export class productModel {
     this.description = product.description;
     this.quantity = product.quantity;
     this.barcode = product.barcode;
+    this.max_order_limit = product.max_order_limit;
   }
 }

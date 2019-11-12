@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from './services/cart-service';
+import { CustomerService } from './services/customer.service';
 
 @Component({
   selector: 'app-customer',
@@ -7,16 +8,27 @@ import { CartService } from './services/cart-service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit {
-  cart:any;
+  cart: any = [];
 
-  constructor(private cs : CartService) { }
+  constructor(private cs: CartService, private apiCustomer: CustomerService) { }
 
   ngOnInit() {
-  this.cs.data.subscribe((res)=>{
-    this.cart = res;
-    console.log(res);
-  }, (err)=>{
-     console.error(err);
-  })
+    this.getCart();
+    this.cartRequestListen();
+  }
+  cartRequestListen() {
+    this.cs.data.subscribe((res) => {
+      console.log("res", res)
+      this.cart = res;
+    }, (err) => {
+      console.error(err);
+    })
+  }
+  getCart() {
+    this.apiCustomer.getCart().subscribe((res) => {
+      this.cart = res[0].product;
+      console.log(this.cart)
+      this.cs.dataSource.next(this.cart);
+    }, (err) => { })
   }
 }

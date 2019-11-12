@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  uri : 'https://nodeproject-store.herokuapp.com/',
-  v_uri : 'https://nodeproject-store.herokuapp.com/api/v1/',
+  uri: 'http://localhost:4000/',
+  v_uri: 'http://localhost:4000/api/v1/',
+  // uri : 'https://nodeproject-store.herokuapp.com/',
+  // v_uri : 'https://nodeproject-store.herokuapp.com/api/v1/',
 };
 
 /*

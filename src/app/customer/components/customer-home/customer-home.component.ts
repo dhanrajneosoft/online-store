@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
-import {environment} from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { CartService } from '../../services/cart-service';
 
 @Component({
@@ -23,8 +23,14 @@ export class CustomerHomeComponent implements OnInit {
       console.log(err);
     })
   }
-  addToCart(product){
+  addToCart(product) {
     // console.log(product);
-   this.cs.updatedDataSelection('add', product);
+    // this.apiCustomer.addToCart()K
+    this.cs.updatedDataSelection('add', product);
+  }
+  getDiscount(mrp, sp) {
+    let discount = mrp - sp;
+    discount = discount / mrp * 100;
+    return discount;
   }
 }

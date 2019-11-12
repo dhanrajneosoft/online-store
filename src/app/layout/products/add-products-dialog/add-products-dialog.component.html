@@ -51,8 +51,22 @@
     <div class="col-md-6">
       <div class="form-group">
         <mat-form-field class="w-100">
-          <input matInput placeholder="Barcode" formControlName="barcode" type="number">
+          <mat-label>Max Order Limit (per user can limited order)</mat-label>
+          <mat-select formControlName="max_order_limit">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+            <mat-option value="7">7</mat-option>
+            <mat-option value="8">8</mat-option>
+            <mat-option value="9">9</mat-option>
+            <mat-option value="10">10</mat-option>
+            <mat-option value="">10+</mat-option>
+          </mat-select>
         </mat-form-field>
+
       </div>
     </div>
     <div class="col-md-12">
