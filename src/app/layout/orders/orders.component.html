@@ -14,13 +14,21 @@
     <tr *ngFor="let order of orders; let i = index">
       <td>{{i+1}}</td>
       <td>{{order._id}}</td>
-      <td>{{order.product.length}}</td>
+      <td>
+        <ng-container *ngFor="let product of order.product; let j = index">
+          <span class="badge badge-warning" style="margin:2px;">{{product.id.name | titlecase}}({{product.quantity}})</span>
+        </ng-container>
+      </td>
       <td>
         <i class="fa fa-rupee"></i>{{order.total | number : '1.2-2'}}</td>
       <td>{{order.payment_mode | titlecase}}</td>
-      <td>{{order.status | titlecase}}</td>
       <td>
-        <button mat-flat-button color="primary">Accept</button>
+        <span class="text text-danger" *ngIf="order.status == 'Pending'">Pending</span>
+        <span class="text text-warning" *ngIf="order.status == 'dispatch'">Dispatched</span>
+        <span class="text text-success" *ngIf="order.status == 'delivered'">Delivered</span>
+      </td>
+      <td>
+        <button mat-flat-button color="primary" (click)="changeOrderStatus(order._id)" *ngIf="order.status == 'Pending'"> Dispatch</button>
         <button mat-flat-button color="warn">Cancel</button>
       </td>
     </tr>

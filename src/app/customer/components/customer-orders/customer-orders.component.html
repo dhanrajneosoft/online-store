@@ -26,7 +26,7 @@
                 <div class="col-md-3">
                   <span>
                     <i class="fa fa-rupee"></i>
-                    {{product.selling_price | number: '1.2-2'}}
+                    {{product.selling_price | number: '1.2-2'}} X {{product.quantity}}
                   </span>
                 </div>
 
@@ -38,7 +38,8 @@
                   <span class="text-lable">Ordered On : </span> {{order.create_at | date: 'medium'}}
                 </span>
                 <span class="total">
-                  <span class="text-lable">Order Total :</span> {{order.total | number: '1.2-2'}}</span>
+                  <span class="text-lable">Order Total : </span>
+                  <i class="fa fa-rupee"></i> {{order.total | number: '1.2-2'}}</span>
               </div>
             </div>
           </div>

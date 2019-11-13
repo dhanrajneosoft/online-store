@@ -22,4 +22,13 @@ export class OrdersComponent implements OnInit {
       console.log(err);
     });
   }
+  changeOrderStatus(id) {
+    console.log(id);
+    this.apiAdmin.dispatchOrder(id, { action: 'dispatch' }).subscribe((res) => {
+      console.log(res);
+      this.getOrders();
+    }, (err) => {
+      console.error(err);
+    });
+  }
 }

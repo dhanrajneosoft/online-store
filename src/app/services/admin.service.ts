@@ -47,4 +47,8 @@ export class AdminService {
     };
     return this.http.delete(url, options);
   }
+  dispatchOrder(order_id, data) {
+    const url = this.apiHelper.getSpaUrl('order/update-status/' + order_id);
+    return this.http.put<any>(url, data);
+  }
 }
