@@ -1,19 +1,28 @@
 <table class="table">
-   <thead>
-     <tr>
-       <th>Sr no.</th>
-       <th>Order</th>
-       <th>Products</th>
-       <th>Amount</th>
-       <th>Payment Mode</th>
-       <th>Action</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr *ngFor="let order of orders; let i = index">
-       <td>{{i+1}}</td>
-       <td>{{order._id}}</td>
-       <td></td>
-     </tr>
-   </tbody>
+  <thead>
+    <tr>
+      <th>Sr no.</th>
+      <th>Order</th>
+      <th>Products</th>
+      <th>Amount</th>
+      <th>Payment Mode</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{order._id}}</td>
+      <td>{{order.product.length}}</td>
+      <td>
+        <i class="fa fa-rupee"></i>{{order.total | number : '1.2-2'}}</td>
+      <td>{{order.payment_mode | titlecase}}</td>
+      <td>{{order.status | titlecase}}</td>
+      <td>
+        <button mat-flat-button color="primary">Accept</button>
+        <button mat-flat-button color="warn">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
 </table>

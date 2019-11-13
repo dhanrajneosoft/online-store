@@ -15,12 +15,11 @@ export class OrdersComponent implements OnInit {
     this.getOrders();
   }
   getOrders() {
-    this.apiAdmin.getProducts().subscribe((res) => {
-      this.orders = res.data;
+    this.apiAdmin.getOrders().subscribe((res) => {
+      this.orders = res;
       console.log(res);
     }, (err) => {
-      console.log(err
-      )
-    })
+      console.log(err);
+    });
   }
 }

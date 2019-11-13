@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="fix-nav">
+<mat-toolbar color="primary" class="fix-nav" style="position: fixed; z-index:9999;">
   <button type="button" mat-icon-button class="visible-md" (click)="toggleSidebar()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
@@ -46,4 +46,6 @@
     <mat-icon>exit_to_app</mat-icon>
   </button>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="content-area">
+  <router-outlet></router-outlet>
+</div>

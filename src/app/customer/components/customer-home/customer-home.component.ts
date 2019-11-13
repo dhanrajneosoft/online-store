@@ -21,11 +21,9 @@ export class CustomerHomeComponent implements OnInit {
       this.cart = this.products = res.data;
     }, (err) => {
       console.log(err);
-    })
+    });
   }
   addToCart(product) {
-    // console.log(product);
-    // this.apiCustomer.addToCart()K
     this.cs.updatedDataSelection('add', product);
   }
   getDiscount(mrp, sp) {

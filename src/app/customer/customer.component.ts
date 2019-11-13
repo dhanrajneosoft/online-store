@@ -18,17 +18,19 @@ export class CustomerComponent implements OnInit {
   }
   cartRequestListen() {
     this.cs.data.subscribe((res) => {
-      console.log("res", res)
+      console.log('res', res);
       this.cart = res;
     }, (err) => {
       console.error(err);
-    })
+    });
   }
   getCart() {
     this.apiCustomer.getCart().subscribe((res) => {
-      this.cart = res[0].product;
-      console.log(this.cart)
+      if (res.length) {
+        this.cart = res[0].product;
+      }
+      console.log(this.cart);
       this.cs.dataSource.next(this.cart);
-    }, (err) => { })
+    }, (err) => { });
   }
 }

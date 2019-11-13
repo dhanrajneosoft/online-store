@@ -12,12 +12,12 @@ export class AdminService {
     const url = this.apiHelper.getSpaUrl('products');
     return this.http.get<any>(url);
   }
-  getProductById(product_id){
+  getProductById(product_id) {
     const url = this.apiHelper.getSpaUrl('products');
     return this.http.get<any>(url);
   }
   getOrders() {
-    const url = this.apiHelper.getSpaUrl('orders');
+    const url = this.apiHelper.getSpaUrl('order');
     return this.http.get<any>(url);
   }
   addProduct(data) {
@@ -28,17 +28,17 @@ export class AdminService {
     const url = this.apiHelper.getSpaUrl('product/' + productId);
     return this.http.put<any>(url, data);
   }
-  getCategories(){
+  getCategories() {
     const url = this.apiHelper.getSpaUrl('categories');
     return this.http.get<any>(url);
   }
-  uploadProductImage(data){
-      const url = this.apiHelper.getSpaUrl('product-image');
-      return this.http.post<any>(url, data);
+  uploadProductImage(data) {
+    const url = this.apiHelper.getSpaUrl('product-image');
+    return this.http.post<any>(url, data);
   }
-  deleteProductImageById(id, data){
+  deleteProductImageById(id, data) {
     console.log(data);
-    const url = this.apiHelper.getSpaUrl('product-image/'+id);
+    const url = this.apiHelper.getSpaUrl('product-image/' + id);
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

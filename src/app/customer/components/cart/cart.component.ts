@@ -20,35 +20,34 @@ export class CartComponent implements OnInit {
       console.log(this.cart);
     }, (err) => {
       console.log(err);
-    })
+    });
     this.getCart();
   }
   increment(i, limit) {
-    console.log(this.cart[i]);
     limit = limit ? limit : Infinity;
     if (this.cart[i].quantity < limit) {
       this.apiCustomer.cartCartQuantity(this.cart[i]._id, this.cart[i].quantity + 1).subscribe((res) => {
         this.getCart();
-      }, (err) => { })
+      }, (err) => { });
     } else {
-      this.snackbar.open(`Product Quantiy cannot more than ${limit}`, "Limit Exceeded", {
+      this.snackbar.open(`Product Quantiy cannot more than ${limit}`, 'Limit Exceeded', {
         duration: 5000
-      })
+      });
     }
   }
   decrement(i) {
     if (this.cart[i].quantity > 1) {
       this.apiCustomer.cartCartQuantity(this.cart[i]._id, this.cart[i].quantity - 1).subscribe((res) => {
         this.getCart();
-      }, (err) => { })
+      }, (err) => { });
     } else {
-      this.snackbar.open(`Product Quantity cannot less than 1`, "Limit Exceeded", {
+      this.snackbar.open(`Product Quantity cannot less than 1`, 'Limit Exceeded', {
         duration: 5000
-      })
+      });
     }
   }
   removeFromCart(index, id) {
-    this.cart.splice(index, 1)
+    this.cart.splice(index, 1);
   }
   getDiscount(mrp, sp) {
     let discount = mrp - sp;
@@ -64,36 +63,38 @@ export class CartComponent implements OnInit {
     return amount;
   }
   getFetch() {
-    debugger
-    fetch("http://google.com").then((res) => {
+    debugger;
+    fetch('http://google.com').then((res) => {
       console.log(res);
     }).catch((reason) => {
       console.log(reason);
-    })
+    });
   }
   addToCart() {
     // const data = {}
-    let data = { product: [] };
+    const data = { product: [] };
     this.cart.forEach((t) => {
       console.log(t);
-      data.product.push({ id: t._id, quantity: t.quantity })
-    })
+      data.product.push({ id: t._id, quantity: t.quantity });
+    });
     console.log(data);
     this.apiCustomer.addToCart(data).subscribe((res) => {
       // conso
-    }, (err) => { })
+    }, (err) => { });
   }
   getCart() {
     this.apiCustomer.getCart().subscribe((res) => {
       console.log(res);
-      this.cart = res[0].product;
-    }, (err) => { })
+      if (res.length) {
+        this.cart = res[0].product;
+      }
+    }, (err) => { });
   }
   deleteItemFromCart(item_id) {
     this.apiCustomer.deleteItemFromCart(item_id).subscribe((res) => {
       this.getCart();
     }, (err) => {
 
-    })
+    });
   }
 }
