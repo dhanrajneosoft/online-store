@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CheckoutComponent } from './checkout.component';
 import { Route, RouterModule } from '@angular/router';
 import { MatCardModule, MatCheckboxModule, MatRadioModule, MatButtonModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
 const routes = [{
   path: '',
   component: CheckoutComponent
@@ -15,7 +16,8 @@ const routes = [{
     MatCheckboxModule,
     MatRadioModule,
     MatButtonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ]
 })
 export class CheckoutModule { }

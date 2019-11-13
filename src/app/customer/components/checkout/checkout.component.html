@@ -1,21 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <mat-card *ngIf="users">
-        <mat-card-title>Address</mat-card-title>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button *ngFor="let address of users.address" [value]="address.add">{{address.add}}</mat-radio-button>
-        </mat-radio-group>
-      </mat-card>
-      <mat-card>
-        <mat-card-title>Payment Options</mat-card-title>
-        <mat-radio-group aria-label="Select an option">
-          <mat-radio-button *ngFor="let pay of payments" [value]="pay">{{pay | titlecase}}</mat-radio-button>
-        </mat-radio-group>
-      </mat-card>
-      <mat-card>
-        <button mat-flat-button color="warn">place order</button>
-      </mat-card>
+      <form [formGroup]="placeorderForm" (ngSubmit)="submit()">
+        <mat-card *ngIf="users">
+          <mat-card-title>Address</mat-card-title>
+          <mat-radio-group aria-label="Select an option" formControlName="address">
+            <mat-radio-button *ngFor="let address of users.address" [value]="address.add">{{address.add}}</mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
+        <mat-card>
+          <mat-card-title>Payment Options</mat-card-title>
+          <mat-radio-group aria-label="Select an option" formControlName="payment_mode">
+            <mat-radio-button *ngFor="let pay of payments" [value]="pay">{{pay | titlecase}}</mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
+        <mat-card>
+          <button mat-flat-button color="warn" type="submit">place order</button>
+        </mat-card>
+      </form>
     </div>
   </div>
 </div>

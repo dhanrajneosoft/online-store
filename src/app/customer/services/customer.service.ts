@@ -32,4 +32,8 @@ export class CustomerService {
     const url = this.apiHelper.getSpaUrl('users');
     return this.http.get<any>(url);
   }
+  placeorder(data) {
+    const url = this.apiHelper.getSpaUrl('order');
+    return this.http.post<any>(url, data);
+  }
 }
