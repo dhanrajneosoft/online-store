@@ -1,0 +1,41 @@
+.order-box {
+    .invoice-btn {
+        font-size: 11px;
+        padding: 0px 9px;
+        line-height: 30px;
+        margin-left: 10px;
+    }
+    .order-box-items {
+        padding: 10px;
+        border: 1px solid #e5e1e1;
+        border-radius: 5px;
+        margin: 10px;
+        .description {
+            color: grey;
+            font-size: 12px;
+        }
+    }
+    .order-box-info {
+        .ost {
+            float: right;
+            .status {
+                color: red;
+            }
+        }
+    }
+    .text-lable {
+        color: grey;
+    }
+    .order-box-final {
+        overflow: auto;
+        .total {
+            float: right;
+            &>span {}
+        }
+    }
+}
+
+.order-card {
+    box-shadow: 1px 1px 5px 1px #bfc0c8;
+    margin: 10px;
+}

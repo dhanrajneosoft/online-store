@@ -22,6 +22,10 @@ const routes = [
             {
                 path: 'checkout',
                 loadChildren: "./components/checkout/checkout.module#CheckoutModule"
+            },
+            {
+                path: 'orders',
+                loadChildren: "./components/customer-orders/customer-orders.module#CustomerOrdersModule"
             }
         ]
     }];

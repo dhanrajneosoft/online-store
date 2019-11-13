@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <mat-card>
+        <mat-card-title>Orders</mat-card-title>
+        <mat-card class="order-card" *ngFor="let order of orders">
+          <div class="order-box">
+            <div class="order-box-info">
+              <span class="">
+                <span class="text-lable">Order ID :</span> {{order._id | uppercase}}</span>
+              <span class="ost">
+                <span class="status">{{order.status | titlecase}}</span>
+                <button mat-flat-button color="primary" class="invoice-btn">
+                  <mat-icon>file_copy</mat-icon> Download Invoice</button>
+              </span>
+            </div>
+            <div class="order-box-items" *ngFor="let product of order.product">
+              <div class="row">
+                <div class="order-box-img col-md-3">
+                  <img [src]="envPath+'/'+product.id.images[0].url" style="width:70%; margin:auto; display:block;">
+                </div>
+                <div class="col-md-6">
+                  <strong>{{product.id.name | titlecase}}</strong>
+                  <p class="description">{{product.id.description}}</p>
+                </div>
+                <div class="col-md-3">
+                  <span>
+                    <i class="fa fa-rupee"></i>
+                    {{product.selling_price | number: '1.2-2'}}
+                  </span>
+                </div>
+
+              </div>
+            </div>
+            <div class="order-box-final">
+              <div class="col-md-12">
+                <span class="order-info">
+                  <span class="text-lable">Ordered On : </span> {{order.create_at | date: 'medium'}}
+                </span>
+                <span class="total">
+                  <span class="text-lable">Order Total :</span> {{order.total | number: '1.2-2'}}</span>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </mat-card>
+    </div>
+  </div>
+</div>
